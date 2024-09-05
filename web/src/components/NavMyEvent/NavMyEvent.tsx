@@ -11,7 +11,10 @@ interface NavMyEventProps {
 const NavMyEvent = ({ thumbnail, title, slug }: NavMyEventProps) => {
   return (
     <li className="m-0 list-none p-0">
-      <Link to={routes.individualEvent({ slug })} className="nav-item">
+      <Link
+        to={routes.individualEvent({ slug })}
+        className="nav-item hover:text-veryLightBlue"
+      >
         <Avatar src={thumbnail} alt={title} size={32} shape="square" />
         {title}
       </Link>
