@@ -1,7 +1,4 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "private": true,
   "browserslist": {
     "development": [
       "last 1 version"
@@ -11,15 +8,27 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/forms": "7.7.4",
-    "@redwoodjs/router": "7.7.4",
-    "@redwoodjs/web": "7.7.4",
+    "@redwoodjs/auth-dbauth-web": "8.0.0",
+    "@redwoodjs/forms": "8.0.0",
+    "@redwoodjs/router": "8.0.0",
+    "@redwoodjs/web": "8.0.0",
+    "@redwoodjs/web-server": "8.0.0",
+    "date-fns": "^3.6.0",
+    "framer-motion": "^11.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@redwoodjs/vite": "7.7.4",
+    "@redwoodjs/vite": "8.0.0",
+    "@types/fs-extra": "^11",
     "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19"
-  }
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^3.4.10"
+  },
+  "name": "web",
+  "private": true,
+  "version": "0.0.0"
 }

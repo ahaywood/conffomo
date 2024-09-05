@@ -7,5 +7,22 @@
   },
   "[prisma]": {
     "editor.formatOnSave": true
-  }
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#083429",
+    "titleBar.activeBackground": "#0B4939",
+    "titleBar.activeForeground": "#F2FDFA"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "activeClassName",
+    "errorClassName"
+  ],
+  "cSpell.words": [
+    "autodocs",
+    "FOMO",
+    "redwoodjs",
+    "signup"
+  ]
 }

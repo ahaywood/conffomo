@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+
+/**
+ * START --- SETUP TAILWINDCSS EDIT
+ *
+ * `yarn rw setup ui tailwindcss` placed these directives here
+ * to inject Tailwind's styles into your CSS.
+ * For more information, see: https://tailwindcss.com/docs/installation
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/**
+* END --- SETUP TAILWINDCSS EDIT
+ */
+
+@layer base {
+  html, body {
+    @apply m-0 p-0 font-sans font-medium;
+  }
+
+  aside nav > ul {
+    @apply flex flex-col gap-5;
+    > li > ul { @apply pt-4 flex flex-col gap-4; }
+    > li button,
+    > li a { @apply flex items-center gap-3 text-black text-xl font-bold; }
+  }
+
+  /* this is used on the event sub nav and the pop up menu items */
+  .nav-item {
+    @apply flex items-center gap-3 text-black text-xl font-bold whitespace-nowrap;
+  }
+
+  svg {
+    @apply fill-current;
+  }
+}
+
+@layer components {
+  .tooltip {
+    @apply text-black border-veryLightBlue rounded-lg border-2 text-sm leading-5 py-2 px-6 bg-white relative whitespace-nowrap pointer-events-none inline-block;
+    &:after,
+    &:before { @apply size-0 content-[''] block border-[8px] border-transparent absolute }
+    &:after { @apply border-[11px] }
+    /* top */
+    &.tooltip-top:before { @apply border-t-veryLightBlue -bottom-[16px] left-1/2 -translate-x-1/2; }
+    &.tooltip-top:after { @apply border-t-white -bottom-[16px] left-1/2 -translate-x-1/2; }
+    /* bottom */
+    &.tooltip-bottom:before { @apply border-b-veryLightBlue -top-[16px] left-1/2 -translate-x-1/2; }
+    &.tooltip-bottom:after { @apply border-b-white -top-[16px] left-1/2 -translate-x-1/2; }
+    /* left */
+    &.tooltip-left:before { @apply border-l-veryLightBlue -right-[16px] top-1/2 -translate-y-1/2; }
+    &.tooltip-left:after { @apply border-l-white -right-[16px] top-1/2 -translate-y-1/2; }
+    /* right */
+    &.tooltip-right:before { @apply border-r-veryLightBlue -left-[16px] top-1/2 -translate-y-1/2; }
+    &.tooltip-right:after { @apply border-r-white -left-[16px] top-1/2 -translate-y-1/2; }
+  }
+
+  .popup-menu {
+    @apply relative;
+    &:after,
+    &:before { @apply size-0 content-[''] block border-[12px] border-transparent absolute }
+    &:after { @apply border-[15px] }
+    &--topCenter:before { @apply border-t-veryLightBlue -bottom-[24px] left-1/2 -translate-x-1/2; }
+    &--topCenter:after { @apply border-t-white -bottom-[24px] left-1/2 -translate-x-1/2; }
+    &--topLeft:before { @apply border-t-veryLightBlue -bottom-[24px] left-[20px]; }
+    &--topLeft:after { @apply border-t-white -bottom-[24px] left-[17px]; }
+    &--topRight:before { @apply border-t-veryLightBlue -bottom-[24px] right-[20px]; }
+    &--topRight:after { @apply border-t-white -bottom-[24px] right-[17px]; }
+    &--bottomCenter:before { @apply border-b-veryLightBlue -top-[24px] left-1/2 -translate-x-1/2; }
+    &--bottomCenter:after { @apply border-b-white -top-[24px] left-1/2 -translate-x-1/2; }
+    &--bottomLeft:before { @apply border-b-veryLightBlue -top-[24px] left-[20px]; }
+    &--bottomLeft:after { @apply border-b-white -top-[24px] left-[17px]; }
+    &--bottomRight:before { @apply border-b-veryLightBlue -top-[24px] right-[20px]; }
+    &--bottomRight:after { @apply border-b-white -top-[24px] right-[17px]; }
+    li a,
+    li button { @apply hover:text-veryLightBlue; }
+  }
+}
+
+@layer utilities {
+  .icon-button {
+    @apply flex items-center justify-center rounded-full w-9 h-9;
+  }
+
+  .center {
+    @apply flex items-center justify-center;
+  }
+}
