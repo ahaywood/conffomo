@@ -7,6 +7,7 @@ module.exports = {
         1: '1px',
       },
       colors: {
+        submarine: '#bfc9c9',
         casper: '#a8b8b9',
         gabbleGreen: '#2c4041',
         punch: {

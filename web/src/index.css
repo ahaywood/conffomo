@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap');
 
 /**
  * START --- SETUP TAILWINDCSS EDIT
@@ -16,7 +16,7 @@
 
 @layer base {
   html, body {
-    @apply m-0 p-0 font-sans font-medium;
+    @apply m-0 p-0 font-sans font-medium bg-submarine;
   }
 
   aside nav > ul {
@@ -75,6 +75,15 @@
     &--bottomRight:after { @apply border-b-white -top-[24px] right-[17px]; }
     li a,
     li button { @apply hover:text-veryLightBlue; }
+  }
+
+  .action-buttons {
+    @apply flex items-center gap-6;
+  }
+
+  .plan-card {
+    .button { @apply rounded-full border-2 border-black font-bold py-2 px-8 hover:text-veryLightBlue hover:border-veryLightBlue; }
+    .toggled-on { @apply bg-veryLightBlue text-white border-veryLightBlue hover:border-veryLightBlue-darker hover:bg-veryLightBlue-darker hover:text-white; }
   }
 }
 
