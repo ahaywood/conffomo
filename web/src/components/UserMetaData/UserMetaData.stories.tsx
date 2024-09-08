@@ -23,4 +23,21 @@ export default meta
 
 type Story = StoryObj<typeof UserMetaData>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    user: {
+      id: 1,
+      username: 'johndoe',
+      first_name: 'John',
+      last_name: 'Doe',
+      avatar: 'https://placehold.co/100x100',
+      location: 'New York, NY',
+      bio: 'I am a developer',
+      link: 'https://johndoe.com',
+      following: [],
+      followingCount: 0,
+      followers: [],
+      followersCount: 0,
+    },
+  },
+}

@@ -79,7 +79,7 @@ const PlanCard = ({
           {prettyifyDate(date)} at {prettifyTime(date)}
         </p>
         <div className="mb-5 flex items-center gap-2">
-          <AvatarStack size={24} attending={attending} />{' '}
+          <AvatarStack size={24} stack={attending} />{' '}
           {randomAttendee(attending).first_name}{' '}
           {randomAttendee(attending).last_name}
           {attendingSummary(attendingTotal)}

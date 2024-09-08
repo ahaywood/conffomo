@@ -23,4 +23,22 @@ export default meta
 
 type Story = StoryObj<typeof AvatarStack>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    size: 32,
+    stack: [
+      {
+        id: 1,
+        avatar: 'https://placehold.co/100x100',
+        first_name: 'John',
+        last_name: 'Doe',
+      },
+      {
+        id: 2,
+        avatar: 'https://placehold.co/100x100',
+        first_name: 'Jane',
+        last_name: 'Doe',
+      },
+    ],
+  },
+}

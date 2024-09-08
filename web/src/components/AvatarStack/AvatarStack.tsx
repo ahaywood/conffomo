@@ -1,6 +1,6 @@
 import Avatar from '../Avatar/Avatar'
 
-export type AttendingType = {
+export type StackType = {
   id: number
   avatar: string
   first_name: string
@@ -8,18 +8,17 @@ export type AttendingType = {
 }
 
 interface AvatarStackProps {
-  attending: AttendingType[]
+  stack: StackType[]
   size: number
 }
 
-const AvatarStack = ({ attending, size }: AvatarStackProps) => {
+const AvatarStack = ({ stack, size }: AvatarStackProps) => {
   return (
-    <div className="flex flex-row-reverse items-center justify-end">
-      {attending.map((attendee, index) => (
+    <div className="flex flex-row items-center justify-start">
+      {stack.map((attendee, index) => (
         <div
-          className="border-submarine relative -mr-1 aspect-square rounded-full border-1"
+          className="border-submarine relative -mr-[6px] aspect-square rounded-full border-1"
           key={index}
-          style={{ zIndex: attending.length - index }}
         >
           <Avatar
             src={attendee.avatar}

@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap');
+
+@font-face {
+  font-family: 'Camera Obscura';
+  src: url('/fonts/cameraobscurademo-webfont.woff2') format('woff2'), url('/fonts/cameraobscurademo-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /**
  * START --- SETUP TAILWINDCSS EDIT
@@ -78,18 +85,28 @@
   }
 
   .action-buttons {
-    @apply flex items-center gap-6;
-  }
-
-  .plan-card {
+    @apply flex items-center gap-3;
     .button { @apply rounded-full border-2 border-black font-bold py-2 px-8 hover:text-veryLightBlue hover:border-veryLightBlue; }
     .toggled-on { @apply bg-veryLightBlue text-white border-veryLightBlue hover:border-veryLightBlue-darker hover:bg-veryLightBlue-darker hover:text-white; }
   }
+
+  .post-card__attachments {
+    img { @apply max-h-[350px]; }
+
+  }
+
 }
 
 @layer utilities {
   .icon-button {
-    @apply flex items-center justify-center rounded-full w-9 h-9;
+    @apply flex items-center justify-center rounded-full w-9 h-9 hover:text-veryLightBlue;
+    &.icon-button--outline { @apply border-2 border-black hover:border-veryLightBlue;
+      &.toggled-on { @apply bg-veryLightBlue text-white border-veryLightBlue hover:border-veryLightBlue-darker hover:bg-veryLightBlue-darker hover:text-white; }
+    }
+  }
+
+  .meta-data-item {
+    @apply flex items-center gap-2;
   }
 
   .center {

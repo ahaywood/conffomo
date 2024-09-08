@@ -1,4 +1,4 @@
-interface AvatarProps {
+export interface AvatarProps {
   alt: string
   className?: string
   size?: number
@@ -6,7 +6,13 @@ interface AvatarProps {
   shape?: 'circle' | 'square'
 }
 
-const Avatar = ({ alt, className = '', size = 72, src = '', shape = 'circle' }: AvatarProps) => {
+const Avatar = ({
+  alt,
+  className = '',
+  size = 72,
+  src = '',
+  shape = 'circle',
+}: AvatarProps) => {
   return (
     <div>
       {src ? (
@@ -18,7 +24,7 @@ const Avatar = ({ alt, className = '', size = 72, src = '', shape = 'circle' }: 
         />
       ) : (
         <div
-          className={`bg-veryLightBlue center text-xl uppercase text-white ${shape === 'circle' ? 'rounded-full' : 'rounded-[4px]'} ${className}`}
+          className={`center bg-veryLightBlue text-xl uppercase text-white ${shape === 'circle' ? 'rounded-full' : 'rounded-[4px]'} ${className}`}
           style={{ width: size, height: size }}
         >
           {alt.charAt(0)}
