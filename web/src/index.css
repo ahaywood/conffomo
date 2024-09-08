@@ -91,10 +91,44 @@
   }
 
   .post-card__attachments {
+    /* has 1 image */
     img { @apply max-h-[350px]; }
 
-  }
+    /* has 2 image */
+    &:has(img:nth-child(2)) {
+      @apply grid grid-cols-2 gap-3;
+    }
 
+    /* has 3 image */
+    &:has(img:nth-child(3)) {
+      @apply grid grid-cols-2 gap-3;
+      img:nth-child(3) { @apply col-span-2; }
+      img { @apply max-h-[200px]; }
+    }
+
+    /* has 4 image */
+    &:has(img:nth-child(4)) {
+      @apply grid grid-cols-2 gap-3;
+      img:nth-child(3) { @apply col-span-1; }
+      img { @apply max-h-[200px]; }
+    }
+
+    /* has 5 or more images */
+    &:has(img:nth-child(5)) {
+      @apply grid grid-cols-6 gap-3;
+      img:nth-child(1),
+      img:nth-child(2) { @apply col-span-3; }
+      img:nth-child(3),
+      img:nth-child(4),
+      img:nth-child(5) {
+        @apply col-span-2;
+      }
+      img:nth-child(n+6) {
+        @apply hidden;
+      }
+      img { @apply max-h-[150px]; }
+    }
+  }
 }
 
 @layer utilities {

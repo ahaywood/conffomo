@@ -147,7 +147,7 @@ const PostCard = ({
 
           {/* attachments */}
           {attachments && (
-            <div className="post-card__attachments mt-4">
+            <div className="post-card__attachments relative mt-4">
               {attachments.map((attachment) => (
                 <img
                   className="w-full rounded-md object-cover"
@@ -156,6 +156,11 @@ const PostCard = ({
                   alt={attachment.type}
                 />
               ))}
+              {attachments.length > 5 && (
+                <div className="absolute bottom-2 right-2 rounded-md bg-black bg-opacity-50 px-2 py-1 text-sm text-white">
+                  +{attachments.length - 5} more
+                </div>
+              )}
             </div>
           )}
         </div>

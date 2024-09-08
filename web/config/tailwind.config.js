@@ -38,5 +38,5 @@ module.exports = {
     'popup-menu--bottomLeft',
     'popup-menu--bottomRight',
   ],
-  plugins: [],
+  plugins: [require('@tailwindcss/container-queries')],
 }

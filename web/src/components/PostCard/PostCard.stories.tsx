@@ -112,3 +112,17 @@ export const withFivePictures: Story = {
     ],
   },
 }
+
+export const withSixPictures: Story = {
+  args: {
+    ...args,
+    attachments: [
+      attachment1,
+      attachment2,
+      attachment3,
+      attachment4,
+      attachment5,
+      attachment1,
+    ],
+  },
+}

@@ -13,6 +13,7 @@
     "@redwoodjs/router": "8.0.0",
     "@redwoodjs/web": "8.0.0",
     "@redwoodjs/web-server": "8.0.0",
+    "@tailwindcss/container-queries": "^0.1.1",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.5.2",
     "react": "18.2.0",
