@@ -15,6 +15,7 @@ import PostForm from '../PostForm/PostForm'
 
 const Nav = () => {
   const [isMyEventsOpen, setIsMyEventsOpen] = useState(false)
+  const [isPostFormShowing, setIsPostFormShowing] = useState(false)
 
   return (
     <>
@@ -93,7 +94,10 @@ const Nav = () => {
         <nav>
           <ul>
             <li>
-              <button className="center mb-5 h-14 w-full rounded-full bg-veryLightBlue text-xl font-bold text-white hover:bg-veryLightBlue-darker hover:text-white">
+              <button
+                onClick={() => setIsPostFormShowing(true)}
+                className="center mb-5 h-14 w-full rounded-full bg-veryLightBlue text-xl font-bold text-white hover:bg-veryLightBlue-darker hover:text-white"
+              >
                 Post +
               </button>
             </li>
@@ -104,10 +108,32 @@ const Nav = () => {
       </aside>
 
       {/* overlay for posting */}
-      <Overlay />
-      <ModalWrapper>
-        <PostForm handleClose={() => {}} />
-      </ModalWrapper>
+      <AnimatePresence>
+        {isPostFormShowing && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Overlay />
+            </motion.div>
+            <ModalWrapper>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+              >
+                <PostForm
+                  handleClose={() => {
+                    setIsPostFormShowing(false)
+                  }}
+                />
+              </motion.div>
+            </ModalWrapper>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }
