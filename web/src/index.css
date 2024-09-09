@@ -188,6 +188,10 @@
     @apply grid grid-cols-12 gap-x-5
   }
 
+  .interior-grid {
+    @apply grid h-full w-full grid-cols-[1fr_345px];
+  }
+
   .page-title {
     @apply font-serif text-gabbleGreen text-[118px] mb-6 leading-[110px];
   }

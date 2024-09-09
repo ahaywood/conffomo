@@ -17,6 +17,8 @@ export const schema = gql`
     muted: [Muted]!
     attending: [Attending]!
     blocks: [Block]!
+    thumbnail: String
+    cover: String
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -36,6 +38,8 @@ export const schema = gql`
     website: String
     public: Boolean!
     reported: Boolean!
+    thumbnail: String
+    cover: String
   }
 
   input UpdateEventInput {
@@ -48,6 +52,8 @@ export const schema = gql`
     website: String
     public: Boolean
     reported: Boolean
+    thumbnail: File
+    cover: File
   }
 
   type Mutation {
