@@ -13,7 +13,7 @@ export const QUERY: TypedDocumentNode<
   FindAttendingGridQuery,
   FindAttendingGridQueryVariables
 > = gql`
-  query FindAttendingGridQuery() {
+  query FindAttendingGridQuery {
     redwood {
       version
     }

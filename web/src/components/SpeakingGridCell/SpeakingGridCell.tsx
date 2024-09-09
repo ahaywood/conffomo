@@ -13,7 +13,7 @@ export const QUERY: TypedDocumentNode<
   FindSpeakingGridQuery,
   FindSpeakingGridQueryVariables
 > = gql`
-  query FindSpeakingGridQuery() {
+  query FindSpeakingGridQuery {
     redwood {
       version
     }

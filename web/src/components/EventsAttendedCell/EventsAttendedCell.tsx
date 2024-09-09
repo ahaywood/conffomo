@@ -13,7 +13,7 @@ export const QUERY: TypedDocumentNode<
   FindEventsAttendedQuery,
   FindEventsAttendedQueryVariables
 > = gql`
-  query FindEventsAttendedQuery() {
+  query FindEventsAttendedQuery {
     redwood {
       version
     }
