@@ -13,9 +13,9 @@ export const QUERY: TypedDocumentNode<
   FindEventsAttendedQuery,
   FindEventsAttendedQueryVariables
 > = gql`
-  query FindEventsAttendedQuery($id: Int!) {
-    eventsAttended: eventsAttended(id: $id) {
-      id
+  query FindEventsAttendedQuery() {
+    redwood {
+      version
     }
   }
 `

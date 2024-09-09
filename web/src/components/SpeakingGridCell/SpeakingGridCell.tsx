@@ -13,9 +13,9 @@ export const QUERY: TypedDocumentNode<
   FindSpeakingGridQuery,
   FindSpeakingGridQueryVariables
 > = gql`
-  query FindSpeakingGridQuery($id: Int!) {
-    speakingGrid: speakingGrid(id: $id) {
-      id
+  query FindSpeakingGridQuery() {
+    redwood {
+      version
     }
   }
 `

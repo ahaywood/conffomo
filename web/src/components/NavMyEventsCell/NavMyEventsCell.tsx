@@ -11,8 +11,8 @@ export const QUERY: TypedDocumentNode<
   NavMyEventsQueryVariables
 > = gql`
   query NavMyEventsQuery {
-    navMyEvents {
-      id
+    redwood {
+      version
     }
   }
 `

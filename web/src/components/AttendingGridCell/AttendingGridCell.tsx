@@ -13,9 +13,9 @@ export const QUERY: TypedDocumentNode<
   FindAttendingGridQuery,
   FindAttendingGridQueryVariables
 > = gql`
-  query FindAttendingGridQuery($id: Int!) {
-    attendingGrid: attendingGrid(id: $id) {
-      id
+  query FindAttendingGridQuery() {
+    redwood {
+      version
     }
   }
 `

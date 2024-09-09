@@ -14,8 +14,8 @@ export const QUERY: TypedDocumentNode<
   UpcomingEventsQueryVariables
 > = gql`
   query UpcomingEventsQuery {
-    upcomingEvents {
-      id
+    redwood {
+      version
     }
   }
 `
