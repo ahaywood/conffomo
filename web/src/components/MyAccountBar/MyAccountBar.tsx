@@ -35,7 +35,7 @@ const MyAccountBar = ({
   return (
     <div className="flex items-center justify-between">
       <Link
-        to={routes.profile({ username: 'test' })}
+        to={routes.profile({ username })}
         className="flex items-center gap-3"
       >
         <Avatar alt={`${firstName} ${lastName}`} src={avatar} />

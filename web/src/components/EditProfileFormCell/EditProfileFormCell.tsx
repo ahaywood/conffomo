@@ -77,6 +77,7 @@ export const Success = ({
     onError: (error) => {
       toast.error(error.message)
     },
+    refetchQueries: [QUERY],
   })
 
   const handleSubmit = (data) => {
@@ -86,10 +87,7 @@ export const Success = ({
       cover: data.cover?.[0], // FileField returns an array, we want the first and only file
     }
 
-    updateUser({
-      variables: { id: user.id, input: input },
-      refetchQueries: [QUERY],
-    })
+    updateUser({ variables: { id: user.id, input: input } })
   }
 
   return (
