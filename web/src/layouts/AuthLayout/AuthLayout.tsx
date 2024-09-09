@@ -1,7 +1,5 @@
 import { Link } from '@redwoodjs/router'
 
-import Footer from 'src/components/Footer/Footer'
-
 type AuthLayoutProps = {
   children?: React.ReactNode
 }

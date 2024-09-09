@@ -152,14 +152,20 @@
       @apply text-4xl font-bold m-0 p-0 block tracking-tight leading-none text-black mb-2;
       &.error { @apply text-destructive; }
     }
+    textarea,
     input[type="text"],
     input[type="email"],
+    input[type="url"],
     input[type="password"] {
-      @apply border-4 border-black text-3xl font-bold tracking-tight h-[95px] w-full px-8 outline-none focus:border-veryLightBlue m-0;
+      @apply border-4 border-black text-3xl font-bold tracking-tight h-[95px] w-full px-8 outline-none focus:border-veryLightBlue m-0 bg-transparent;
       &.error { @apply border-destructive; }
     }
     .field { @apply mb-8; }
     .error { @apply text-destructive font-bold; }
+  }
+
+  .drop-zone {
+    @apply rounded-full w-full border-4 border-black hover:text-veryLightBlue h-[115px] flex items-center justify-center flex-col border-dashed hover:border-veryLightBlue cursor-pointer;
   }
 
   .feature-forgot {

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       borderWidth: {
         1: '1px',
+        3: '3px',
       },
       colors: {
         submarine: '#bfc9c9',
