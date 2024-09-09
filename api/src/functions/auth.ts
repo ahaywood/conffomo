@@ -131,12 +131,15 @@ export const handler = async (
       salt,
       userAttributes: _userAttributes,
     }) => {
+      console.log({ _userAttributes })
       return db.user.create({
         data: {
-          email: username,
+          email: _userAttributes.email,
           hashedPassword: hashedPassword,
           salt: salt,
-          // name: userAttributes.name
+          firstName: _userAttributes.firstName,
+          lastName: _userAttributes.lastName,
+          username: username,
         },
       })
     },

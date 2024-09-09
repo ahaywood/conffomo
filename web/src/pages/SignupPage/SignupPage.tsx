@@ -21,7 +21,7 @@ const SignupPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      navigate(routes.dashboard())
     }
   }, [isAuthenticated])
 
@@ -32,10 +32,17 @@ const SignupPage = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    console.log({ data })
+
     const response = await signUp({
-      username: data.username,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.username,
+      username: data.slug,
       password: data.password,
     })
+
+    console.log({ response })
 
     if (response.message) {
       toast(response.message)
@@ -51,7 +58,7 @@ const SignupPage = () => {
     <>
       <Metadata title="Signup" />
 
-      <div className="mr-page z-feature relative col-span-6 row-span-2 border-r-1 border-black pt-7">
+      <div className="relative z-feature col-span-6 row-span-2 mr-page border-r-1 border-black pt-7">
         <div className="sticky top-[100px]">
           <img src="/images/feature__signup.png" alt="" />
         </div>
@@ -97,11 +104,11 @@ const SignupPage = () => {
           </div>
 
           <div className="field">
-            <Label name="username" errorClassName="error">
+            <Label name="slug" errorClassName="error">
               Username
             </Label>
             <TextField
-              name="username"
+              name="slug"
               errorClassName="error"
               validation={{
                 required: {
@@ -110,15 +117,15 @@ const SignupPage = () => {
                 },
               }}
             />
-            <FieldError name="username" className="error" />
+            <FieldError name="slug" className="error" />
           </div>
 
           <div className="field">
-            <Label name="email" errorClassName="error">
+            <Label name="username" errorClassName="error">
               Email
             </Label>
             <EmailField
-              name="email"
+              name="username"
               errorClassName="error"
               validation={{
                 required: {
@@ -127,7 +134,7 @@ const SignupPage = () => {
                 },
               }}
             />
-            <FieldError name="email" className="error" />
+            <FieldError name="username" className="error" />
           </div>
 
           <div className="field">
