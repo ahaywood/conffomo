@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { Link, routes } from '@redwoodjs/router'
 
 import NavMyEventsCell from 'src/components/NavMyEventsCell'
+import { useClickOutside } from 'src/hooks/useClickOutside'
+import { useEscapeKey } from 'src/hooks/useEscapeKey'
 
 import Icon from '../Icon/Icon'
 import ModalWrapper from '../ModalWrapper/ModalWrapper'
@@ -16,6 +18,11 @@ import PostForm from '../PostForm/PostForm'
 const Nav = () => {
   const [isMyEventsOpen, setIsMyEventsOpen] = useState(false)
   const [isPostFormShowing, setIsPostFormShowing] = useState(false)
+
+  const postFormRef = useRef<HTMLDivElement>(null)
+
+  useEscapeKey(() => setIsPostFormShowing(false))
+  useClickOutside(() => setIsPostFormShowing(false), postFormRef)
 
   return (
     <>
@@ -123,6 +130,7 @@ const Nav = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
+                ref={postFormRef}
               >
                 <PostForm
                   handleClose={() => {
