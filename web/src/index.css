@@ -26,11 +26,28 @@
     @apply m-0 p-0 font-sans font-medium bg-submarine;
   }
 
+  body {
+    background: #bdc8c8 url('/images/bg.jpg') center top no-repeat;
+    background-size: 100% auto;
+    @apply min-h-[100vh] min-w-[100vw] relative;
+    &:before { @apply content-[''] block w-6 h-[calc(100vh_-_32px)] border-y-4 border-l-4 border-black fixed left-3 top-4 bottom-4 z-brackets; }
+    &:after { @apply content-[''] block w-6 h-[calc(100vh_-_32px)] border-y-4 border-r-4 border-black fixed right-3 top-4 bottom-4 z-brackets; }
+  }
+
+  /* form fields */
+  label {
+
+  }
+
   aside nav > ul {
     @apply flex flex-col gap-5;
     > li > ul { @apply pt-4 flex flex-col gap-4; }
     > li button,
     > li a { @apply flex items-center gap-3 text-black text-xl font-bold; }
+  }
+
+  footer {
+    a { @apply hover:underline hover:text-veryLightBlue; }
   }
 
   /* this is used on the event sub nav and the pop up menu items */
@@ -129,9 +146,46 @@
       img { @apply max-h-[150px]; }
     }
   }
+
+  .auth-form {
+    label {
+      @apply text-4xl font-bold m-0 p-0 block tracking-tight leading-none text-black mb-2;
+      &.error { @apply text-destructive; }
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      @apply border-4 border-black text-3xl font-bold tracking-tight h-[95px] w-full px-8 outline-none focus:border-veryLightBlue m-0;
+      &.error { @apply border-destructive; }
+    }
+    .field { @apply mb-8; }
+    .error { @apply text-destructive font-bold; }
+  }
+
+  .feature-forgot {
+    background: url('/images/feature__forgot.png') 780px top no-repeat;
+    @apply absolute inset-0 w-screen h-screen pointer-events-none;
+  }
+
+  .feature-reset {
+    background: url('/images/feature__password-reset.png') 780px 40px no-repeat;
+    @apply absolute inset-0 w-screen h-screen pointer-events-none;
+  }
+
+  .feature-legal {
+    background: url('/images/feature__legal.png') right bottom no-repeat;
+  }
 }
 
 @layer utilities {
+  .page-grid {
+    @apply grid grid-cols-12 gap-x-5
+  }
+
+  .page-title {
+    @apply font-serif text-gabbleGreen text-[118px] mb-6 leading-[110px];
+  }
+
   .icon-button {
     @apply flex items-center justify-center rounded-full w-9 h-9 hover:text-veryLightBlue;
     &.icon-button--outline { @apply border-2 border-black hover:border-veryLightBlue;
@@ -145,5 +199,11 @@
 
   .center {
     @apply flex items-center justify-center;
+  }
+
+  .button {
+    @apply rounded-full text-xl font-bold py-4 px-9;
+    &.primary { @apply bg-veryLightBlue text-white hover:bg-veryLightBlue-darker; }
+    &.large { @apply text-4xl h-[95px] w-full }
   }
 }

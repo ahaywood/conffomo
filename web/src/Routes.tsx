@@ -30,10 +30,14 @@ const Routes = () => {
       </Set>
 
       {/* LEGAL */}
-      <Set wrap={LegalLayout}>
-        <Route path="/terms" page={TermsPage} name="terms" />
-        <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" />
+      <Set wrap={LegalLayout} pageTitle="Privacy Policy">
         <Route path="/privacy" page={PrivacyPage} name="privacy" />
+      </Set>
+      <Set wrap={LegalLayout} pageTitle="Terms & Conditions">
+        <Route path="/terms" page={TermsPage} name="terms" />
+      </Set>
+      <Set wrap={LegalLayout} pageTitle="Disclaimers">
+        <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" />
       </Set>
 
       {/* PUBLICLY AVAILABLE PAGES */}

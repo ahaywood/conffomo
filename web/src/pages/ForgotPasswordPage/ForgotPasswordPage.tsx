@@ -6,6 +6,7 @@ import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import Footer from 'src/components/Footer/Footer'
 
 const ForgotPasswordPage = () => {
   const { isAuthenticated, forgotPassword } = useAuth()
@@ -41,52 +42,51 @@ const ForgotPasswordPage = () => {
     <>
       <Metadata title="Forgot Password" />
 
-      <main className="rw-main">
+      <div className="feature-forgot" />
+
+      <div className="z-content relative col-span-12 pt-[60px]">
+        <h1 className="page-title">
+          Forgot my
+          <br />
+          Password
+        </h1>
+      </div>
+
+      <main className="z-content relative col-span-5">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">
-                Forgot Password
-              </h2>
-            </header>
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <div className="text-left">
-                    <Label
-                      name="username"
-                      className="rw-label"
-                      errorClassName="rw-label rw-label-error"
-                    >
-                      Username
-                    </Label>
-                    <TextField
-                      name="username"
-                      className="rw-input"
-                      errorClassName="rw-input rw-input-error"
-                      ref={usernameRef}
-                      validation={{
-                        required: {
-                          value: true,
-                          message: 'Username is required',
-                        },
-                      }}
-                    />
+        <Form onSubmit={onSubmit} className="auth-form mb-[200px]">
+          <div className="field">
+            <Label
+              name="username"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Username
+            </Label>
+            <TextField
+              name="username"
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              ref={usernameRef}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Username is required',
+                },
+              }}
+            />
 
-                    <FieldError name="username" className="rw-field-error" />
-                  </div>
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Submit</Submit>
-                  </div>
-                </Form>
-              </div>
-            </div>
+            <FieldError name="username" className="error" />
           </div>
-        </div>
+
+          <Submit className="button primary large">Submit</Submit>
+        </Form>
       </main>
+
+      <div className="col-span-12 text-center">
+        <Footer />
+      </div>
     </>
   )
 }

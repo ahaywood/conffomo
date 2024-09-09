@@ -6,6 +6,7 @@ export type IconName =
 	| "bookmarks"
 	| "bookmarksFilled"
 	| "chevronDown"
+	| "close"
 	| "copy"
 	| "dashboard"
 	| "edit"
@@ -13,6 +14,7 @@ export type IconName =
 	| "flag"
 	| "follow"
 	| "hide"
+	| "image"
 	| "like"
 	| "likeFilled"
 	| "link"
@@ -30,4 +32,6 @@ export type IconName =
 	| "speech"
 	| "threeDots"
 	| "trash"
-	| "unfollow";
+	| "unfollow"
+	| "upload"
+	| "video";

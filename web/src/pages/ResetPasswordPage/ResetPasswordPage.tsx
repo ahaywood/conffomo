@@ -12,6 +12,7 @@ import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import Footer from 'src/components/Footer/Footer'
 
 const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
   const { isAuthenticated, reauthenticate, validateResetToken, resetPassword } =
@@ -61,58 +62,64 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
     <>
       <Metadata title="Reset Password" />
 
-      <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">
-                Reset Password
-              </h2>
-            </header>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <div className="text-left">
-                    <Label
-                      name="password"
-                      className="rw-label"
-                      errorClassName="rw-label rw-label-error"
-                    >
-                      New Password
-                    </Label>
-                    <PasswordField
-                      name="password"
-                      autoComplete="new-password"
-                      className="rw-input"
-                      errorClassName="rw-input rw-input-error"
-                      disabled={!enabled}
-                      ref={passwordRef}
-                      validation={{
-                        required: {
-                          value: true,
-                          message: 'New Password is required',
-                        },
-                      }}
-                    />
+      <div className="feature-reset" />
 
-                    <FieldError name="password" className="rw-field-error" />
-                  </div>
+      <h1 className="page-title z-content relative col-span-12 pt-[60px]">
+        Password
+        <br />
+        Reset
+      </h1>
 
-                  <div className="rw-button-group">
-                    <Submit
-                      className="rw-button rw-button-blue"
-                      disabled={!enabled}
-                    >
-                      Submit
-                    </Submit>
-                  </div>
-                </Form>
-              </div>
-            </div>
+      <main className="col-span-5">
+        <Form onSubmit={onSubmit} className="auth-form">
+          <div className="field">
+            <Label name="password" errorClassName="error">
+              New Password
+            </Label>
+            <PasswordField
+              name="password"
+              autoComplete="new-password"
+              errorClassName="error"
+              disabled={!enabled}
+              ref={passwordRef}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'New Password is required',
+                },
+              }}
+            />
+
+            <FieldError name="password" className="error" />
           </div>
-        </div>
+
+          <div className="field">
+            <Label name="confirmPassword" errorClassName="error">
+              Confirm Password
+            </Label>
+            <PasswordField
+              name="confirmPassword"
+              autoComplete="new-password"
+              errorClassName="error"
+              disabled={!enabled}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Confirm Password is required',
+                },
+              }}
+            />
+
+            <FieldError name="confirmPassword" className="error" />
+          </div>
+
+          <Submit className="button primary large mb-10" disabled={!enabled}>
+            Submit
+          </Submit>
+        </Form>
+        <Footer />
       </main>
     </>
   )

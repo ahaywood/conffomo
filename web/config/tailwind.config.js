@@ -19,11 +19,24 @@ module.exports = {
           darker: '#4351cc',
         },
         destructive: '#f14337',
+        battleshipGray: '#828282',
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Camera Obscura', 'serif'],
+      margin: {
+        page: '68px',
       },
+      padding: {
+        page: '68px',
+      },
+      zIndex: {
+        content: 53,
+        feature: 52,
+        logo: 51,
+        brackets: 50,
+      },
+    },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+      serif: ['Camera Obscura', 'serif'],
     },
   },
   safelist: [

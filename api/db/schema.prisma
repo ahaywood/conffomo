@@ -18,12 +18,194 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 model User {
   id                  Int       @id @default(autoincrement())
+  firstName           String
+  lastName            String
   email               String    @unique
+  username            String    @unique
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
   avatar              String?
+  cover               String?
+  bio                 String?
+  location            String?
+  website             String?
+  public              Boolean   @default(true)
+  directMessages      Boolean   @default(true) // can receive direct messages
+  onboarded           Boolean   @default(false) // whether this user has onboarded
+  reported            Boolean   @default(false) // whether someone has reported this account?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+}
+
+model Bookmark {
+  id        Int      @id @default(autoincrement())
+  // postId    Int      @id @default(autoincrement())
+  // users
+  // userId    Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  // userId
+  // postId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Block {
+  id        Int      @id @default(autoincrement())
+  // userId
+  // blockedUser // if the user has blocked a user
+  // blockedEvent // if the user has blocked an event
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Organization {
+  id        Int      @id @default(autoincrement())
+  name      String
+  // ownerId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Attending {
+  id        Int      @id @default(autoincrement())
+  // userId
+  // eventId
+  speaking  Boolean  @default(false) // true if the user is speaking at this event
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  // userId // author
+  // eventId
+  content   String
+  // planId // associated to Plans
+  reported  Boolean  @default(false) // if the post has been reported
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        Int      @id @default(autoincrement())
+  // user
+  // post
+  alt       String?
+  caption   String?
+  // comment
+  // type // enum - photo / video
+  // message // direct message
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  name        String
+  startDate   DateTime
+  endDate     DateTime?
+  // organizationId
+  description String?
+  location    String?
+  website     String?
+  public      Boolean   @default(true)
+  reported    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Recommendation {
+  id        Int      @id @default(autoincrement())
+  title     String
+  // eventID
+  street1   String?
+  street2   String?
+  city      String?
+  state     String?
+  zip       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommentThread {
+  id        Int      @id @default(autoincrement())
+  // comment
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  // userId // author
+  // postId Int
+  comment   String
+  // commentThreadId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Muted {
+  id        Int      @id @default(autoincrement())
+  // userId
+  // mutedAccount
+  // mutedEvent
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plan {
+  id        Int       @id @default(autoincrement())
+  title     String
+  startDate DateTime  @default(now())
+  endDate   DateTime?
+  thumbnail String?
+  reported  Boolean   @default(false)
+  street1   String?
+  street2   String?
+  city      String?
+  state     String?
+  zip       String?
+  public    Boolean   @default(false)
+  limit     Int? // limit the number of people that can attend
+  // eventId
+  // userId // author / owner of the plans
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model AttendingPlan {
+  id        Int      @id @default(autoincrement())
+  // userId Int
+  // planId
+  // status // enum - interested / going
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  // toUser
+  // fromUser
+  message   String
+  edited    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  // postId
+  // commentId
+  // type // enum -
+  // userId
+  // eventId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

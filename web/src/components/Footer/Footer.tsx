@@ -8,7 +8,7 @@ type FooterProps = {
 
 const Footer = ({ className }: FooterProps) => {
   return (
-    <div className={className}>
+    <footer className={className}>
       <p className="mb-3">
         <Link to={routes.about()}>About</Link>&nbsp;&nbsp;•&nbsp;&nbsp;
         <Link to={routes.contact()}>Contact</Link>&nbsp;&nbsp;•&nbsp;&nbsp;
@@ -23,7 +23,7 @@ const Footer = ({ className }: FooterProps) => {
         <a href={Constants.AH_HA_CREATIVE}>Ah Ha Creative, LLC</a>. All Rights
         Reserved.
       </p>
-    </div>
+    </footer>
   )
 }
 
