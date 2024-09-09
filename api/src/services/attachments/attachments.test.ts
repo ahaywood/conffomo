@@ -37,14 +37,14 @@ describe('attachments', () => {
         userId: scenario.attachment.two.userId,
         postId: scenario.attachment.two.postId,
         messageId: scenario.attachment.two.messageId,
-        updatedAt: '2024-09-09T07:13:18.229Z',
+        updatedAt: '2024-09-09T07:31:22.485Z',
       },
     })
 
     expect(result.userId).toEqual(scenario.attachment.two.userId)
     expect(result.postId).toEqual(scenario.attachment.two.postId)
     expect(result.messageId).toEqual(scenario.attachment.two.messageId)
-    expect(result.updatedAt).toEqual(new Date('2024-09-09T07:13:18.229Z'))
+    expect(result.updatedAt).toEqual(new Date('2024-09-09T07:31:22.485Z'))
   })
 
   scenario('updates a attachment', async (scenario: StandardScenario) => {
@@ -53,10 +53,10 @@ describe('attachments', () => {
     })) as Attachment
     const result = await updateAttachment({
       id: original.id,
-      input: { updatedAt: '2024-09-10T07:13:18.229Z' },
+      input: { updatedAt: '2024-09-10T07:31:22.485Z' },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-09-10T07:13:18.229Z'))
+    expect(result.updatedAt).toEqual(new Date('2024-09-10T07:31:22.485Z'))
   })
 
   scenario('deletes a attachment', async (scenario: StandardScenario) => {

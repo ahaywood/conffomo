@@ -125,23 +125,25 @@ model Post {
   updatedAt   DateTime     @updatedAt
 }
 
+enum AttachmentType {
+  PHOTO
+  VIDEO
+}
+
 model Attachment {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  id        Int            @id @default(autoincrement())
+  user      User           @relation(fields: [userId], references: [id])
   userId    Int
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post           @relation(fields: [postId], references: [id])
   postId    Int
   alt       String?
   caption   String?
-  // threads   Thread[]
-  // comment
-  // thread    Thread   @relation(fields: [threadId], references: [id])
-  // threadId  Int
-  // type // enum - photo / video
-  message   Message  @relation(fields: [messageId], references: [id])
+  threads   Thread[]
+  type      AttachmentType @default(PHOTO)
+  message   Message        @relation(fields: [messageId], references: [id])
   messageId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
 }
 
 model Event {
@@ -181,13 +183,12 @@ model Recommendation {
 }
 
 model Thread {
-  id        Int      @id @default(autoincrement())
-  // comments  Comment[]
-  // attachments Attachment[]
-  // attachments  Attachment @relation(fields: [attachmentId], references: [id])
-  // attachmentId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int        @id @default(autoincrement())
+  comments     Comment[]
+  attachments  Attachment @relation(fields: [attachmentId], references: [id])
+  attachmentId Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model Comment {
@@ -197,8 +198,8 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int
   comment   String
-  // thread    Thread   @relation(fields: [threadId], references: [id])
-  // threadId  Int
+  thread    Thread   @relation(fields: [threadId], references: [id])
+  threadId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -239,15 +240,20 @@ model Plan {
   updatedAt      DateTime        @updatedAt
 }
 
+enum AttendingStatus {
+  INTERESTED
+  GOING
+}
+
 model AttendingPlan {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  id        Int              @id @default(autoincrement())
+  user      User             @relation(fields: [userId], references: [id])
   userId    Int
-  plan      Plan     @relation(fields: [planId], references: [id])
+  plan      Plan             @relation(fields: [planId], references: [id])
   planId    Int
-  // status // enum - interested / going
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status    AttendingStatus?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
 }
 
 model Message {

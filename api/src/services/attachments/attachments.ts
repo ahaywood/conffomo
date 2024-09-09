@@ -49,6 +49,9 @@ export const Attachment: AttachmentRelationResolvers = {
   post: (_obj, { root }) => {
     return db.attachment.findUnique({ where: { id: root?.id } }).post()
   },
+  threads: (_obj, { root }) => {
+    return db.attachment.findUnique({ where: { id: root?.id } }).threads()
+  },
   message: (_obj, { root }) => {
     return db.attachment.findUnique({ where: { id: root?.id } }).message()
   },

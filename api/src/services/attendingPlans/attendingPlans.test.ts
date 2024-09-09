@@ -36,13 +36,13 @@ describe('attendingPlans', () => {
       input: {
         userId: scenario.attendingPlan.two.userId,
         planId: scenario.attendingPlan.two.planId,
-        updatedAt: '2024-09-09T06:56:11.588Z',
+        updatedAt: '2024-09-09T07:30:56.966Z',
       },
     })
 
     expect(result.userId).toEqual(scenario.attendingPlan.two.userId)
     expect(result.planId).toEqual(scenario.attendingPlan.two.planId)
-    expect(result.updatedAt).toEqual(new Date('2024-09-09T06:56:11.588Z'))
+    expect(result.updatedAt).toEqual(new Date('2024-09-09T07:30:56.966Z'))
   })
 
   scenario('updates a attendingPlan', async (scenario: StandardScenario) => {
@@ -51,10 +51,10 @@ describe('attendingPlans', () => {
     })) as AttendingPlan
     const result = await updateAttendingPlan({
       id: original.id,
-      input: { updatedAt: '2024-09-10T06:56:11.588Z' },
+      input: { updatedAt: '2024-09-10T07:30:56.966Z' },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-09-10T06:56:11.588Z'))
+    expect(result.updatedAt).toEqual(new Date('2024-09-10T07:30:56.966Z'))
   })
 
   scenario('deletes a attendingPlan', async (scenario: StandardScenario) => {

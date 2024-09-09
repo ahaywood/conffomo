@@ -7,10 +7,17 @@ export const schema = gql`
     postId: Int!
     alt: String
     caption: String
+    threads: [Thread]!
+    type: AttachmentType!
     message: Message!
     messageId: Int!
     createdAt: DateTime!
     updatedAt: DateTime!
+  }
+
+  enum AttachmentType {
+    PHOTO
+    VIDEO
   }
 
   type Query {
@@ -23,6 +30,7 @@ export const schema = gql`
     postId: Int!
     alt: String
     caption: String
+    type: AttachmentType!
     messageId: Int!
   }
 
@@ -31,6 +39,7 @@ export const schema = gql`
     postId: Int
     alt: String
     caption: String
+    type: AttachmentType
     messageId: Int
   }
 

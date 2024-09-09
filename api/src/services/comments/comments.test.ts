@@ -34,14 +34,16 @@ describe('comments', () => {
         userId: scenario.comment.two.userId,
         postId: scenario.comment.two.postId,
         comment: 'String',
-        updatedAt: '2024-09-09T07:07:20.053Z',
+        threadId: scenario.comment.two.threadId,
+        updatedAt: '2024-09-09T07:26:54.558Z',
       },
     })
 
     expect(result.userId).toEqual(scenario.comment.two.userId)
     expect(result.postId).toEqual(scenario.comment.two.postId)
     expect(result.comment).toEqual('String')
-    expect(result.updatedAt).toEqual(new Date('2024-09-09T07:07:20.053Z'))
+    expect(result.threadId).toEqual(scenario.comment.two.threadId)
+    expect(result.updatedAt).toEqual(new Date('2024-09-09T07:26:54.558Z'))
   })
 
   scenario('updates a comment', async (scenario: StandardScenario) => {
