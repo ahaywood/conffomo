@@ -21,8 +21,8 @@ export const schema = gql`
   }
 
   type Query {
-    attachments: [Attachment!]! @requireAuth
-    attachment(id: Int!): Attachment @requireAuth
+    attachments: [Attachment!]! @skipAuth
+    attachment(id: Int!): Attachment @skipAuth
   }
 
   input CreateAttachmentInput {
@@ -44,9 +44,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createAttachment(input: CreateAttachmentInput!): Attachment! @requireAuth
+    createAttachment(input: CreateAttachmentInput!): Attachment! @skipAuth
     updateAttachment(id: Int!, input: UpdateAttachmentInput!): Attachment!
-      @requireAuth
-    deleteAttachment(id: Int!): Attachment! @requireAuth
+      @skipAuth
+    deleteAttachment(id: Int!): Attachment! @skipAuth
   }
 `

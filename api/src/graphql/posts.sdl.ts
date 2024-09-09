@@ -6,8 +6,8 @@ export const schema = gql`
     event: Event!
     eventId: Int!
     content: String!
-    plan: Plan!
-    PlanId: Int!
+    plan: Plan
+    PlanId: Int
     attachments: [Attachment]!
     comments: [Comment]!
     bookmarks: [Bookmark]!
@@ -18,16 +18,16 @@ export const schema = gql`
   }
 
   type Query {
-    posts: [Post!]! @requireAuth
-    post(id: Int!): Post @requireAuth
+    posts: [Post!]! @skipAuth
+    post(id: Int!): Post @skipAuth
   }
 
   input CreatePostInput {
     userId: Int!
     eventId: Int!
     content: String!
-    PlanId: Int!
-    reported: Boolean!
+    PlanId: Int
+    reported: Boolean
   }
 
   input UpdatePostInput {
@@ -39,8 +39,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createPost(input: CreatePostInput!): Post! @requireAuth
-    updatePost(id: Int!, input: UpdatePostInput!): Post! @requireAuth
-    deletePost(id: Int!): Post! @requireAuth
+    createPost(input: CreatePostInput!): Post! @skipAuth
+    updatePost(id: Int!, input: UpdatePostInput!): Post! @skipAuth
+    deletePost(id: Int!): Post! @skipAuth
   }
 `

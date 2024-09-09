@@ -16,8 +16,8 @@ export const schema = gql`
   }
 
   type Query {
-    attendingPlans: [AttendingPlan!]! @requireAuth
-    attendingPlan(id: Int!): AttendingPlan @requireAuth
+    attendingPlans: [AttendingPlan!]! @skipAuth
+    attendingPlan(id: Int!): AttendingPlan @skipAuth
   }
 
   input CreateAttendingPlanInput {
@@ -34,11 +34,11 @@ export const schema = gql`
 
   type Mutation {
     createAttendingPlan(input: CreateAttendingPlanInput!): AttendingPlan!
-      @requireAuth
+      @skipAuth
     updateAttendingPlan(
       id: Int!
       input: UpdateAttendingPlanInput!
-    ): AttendingPlan! @requireAuth
-    deleteAttendingPlan(id: Int!): AttendingPlan! @requireAuth
+    ): AttendingPlan! @skipAuth
+    deleteAttendingPlan(id: Int!): AttendingPlan! @skipAuth
   }
 `

@@ -2,10 +2,11 @@ export const schema = gql`
   type Event {
     id: Int!
     name: String!
+    slug: String!
     startDate: DateTime!
     endDate: DateTime
-    organization: Organization!
-    organizationId: Int!
+    organization: Organization
+    organizationId: Int
     recommendations: [Recommendation]!
     description: String
     location: String
@@ -30,6 +31,7 @@ export const schema = gql`
 
   input CreateEventInput {
     name: String!
+    slug: String!
     startDate: DateTime!
     endDate: DateTime
     organizationId: Int!
@@ -44,6 +46,7 @@ export const schema = gql`
 
   input UpdateEventInput {
     name: String
+    slug: String
     startDate: DateTime
     endDate: DateTime
     organizationId: Int
@@ -57,8 +60,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createEvent(input: CreateEventInput!): Event! @requireAuth
-    updateEvent(id: Int!, input: UpdateEventInput!): Event! @requireAuth
-    deleteEvent(id: Int!): Event! @requireAuth
+    createEvent(input: CreateEventInput!): Event! @skipAuth
+    updateEvent(id: Int!, input: UpdateEventInput!): Event! @skipAuth
+    deleteEvent(id: Int!): Event! @skipAuth
   }
 `

@@ -37,3 +37,51 @@ export const deleteUser: MutationResolvers['deleteUser'] = ({ id }) => {
     where: { id },
   })
 }
+
+export const User: UserRelationResolvers = {
+  likes: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).likes()
+  },
+  comments: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).comments()
+  },
+  bookmarks: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).bookmarks()
+  },
+  posts: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).posts()
+  },
+  plans: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).plans()
+  },
+  messagesTo: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).messagesTo()
+  },
+  messagesFrom: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).messagesFrom()
+  },
+  attendingPlans: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).attendingPlans()
+  },
+  mutedBy: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).mutedBy()
+  },
+  mutedUser: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).mutedUser()
+  },
+  attachments: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).attachments()
+  },
+  attending: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).attending()
+  },
+  organization: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).organization()
+  },
+  blockedByUser: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).blockedByUser()
+  },
+  blockedUser: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).blockedUser()
+  },
+}

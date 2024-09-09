@@ -33,14 +33,19 @@ const GuestDashboardPage = () => {
     <>
       <Metadata title="GuestDashboard" description="GuestDashboard page" />
 
-      <h1>GuestDashboardPage</h1>
+      <div className="interior-grid">
+        <div className="p-page">
+          <h1 className="page-title">Feed</h1>
 
-      <Form onSubmit={onSubmit}>
-        <fieldset disabled={loading}>
-          <FileField name="avatar" />
-          <Submit>Submit</Submit>
-        </fieldset>
-      </Form>
+          <Form onSubmit={onSubmit}>
+            <fieldset disabled={loading}>
+              <FileField name="avatar" />
+              <Submit>Submit</Submit>
+            </fieldset>
+          </Form>
+        </div>
+        <aside></aside>
+      </div>
     </>
   )
 }

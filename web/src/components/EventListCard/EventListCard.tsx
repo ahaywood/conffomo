@@ -2,25 +2,30 @@ import NavMyEvent from '../NavMyEvent/NavMyEvent'
 
 type Event = {
   id: number
-  slug: string
-  title: string
   thumbnail: string
+  name: string
+  slug: string
 }
 
 interface EventListCardProps {
   heading: string
-  events: Event[]
+  events: { event: Event }[]
 }
 
 const EventListCard = ({ heading, events }: EventListCardProps) => {
+  console.log({ events })
   return (
     <div className="rounded-lg bg-white bg-opacity-30 p-4">
       <h2 className="mb-3 text-lg font-bold">{heading}</h2>
-      <ul className="flex flex-col gap-3">
-        {events.map((event) => (
-          <NavMyEvent key={event.id} {...event} />
-        ))}
-      </ul>
+      {events.map((event, index) => (
+        <NavMyEvent
+          key={index}
+          id={event.event.id}
+          thumbnail={event.event.thumbnail}
+          name={event.event.name}
+          slug={event.event.slug}
+        />
+      ))}
     </div>
   )
 }

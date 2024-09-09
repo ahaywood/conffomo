@@ -10,8 +10,8 @@ export const schema = gql`
   }
 
   type Query {
-    likes: [Like!]! @requireAuth
-    like(id: Int!): Like @requireAuth
+    likes: [Like!]! @skipAuth
+    like(id: Int!): Like @skipAuth
   }
 
   input CreateLikeInput {
@@ -25,8 +25,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createLike(input: CreateLikeInput!): Like! @requireAuth
-    updateLike(id: Int!, input: UpdateLikeInput!): Like! @requireAuth
-    deleteLike(id: Int!): Like! @requireAuth
+    createLike(input: CreateLikeInput!): Like! @skipAuth
+    updateLike(id: Int!, input: UpdateLikeInput!): Like! @skipAuth
+    deleteLike(id: Int!): Like! @skipAuth
   }
 `

@@ -15,12 +15,17 @@ export const QUERY: TypedDocumentNode<
   UpcomingEventsQuery,
   UpcomingEventsQueryVariables
 > = gql`
-  query UpcomingEventsQuery {
-    events {
-      id
-      name
-      thumbnail
-      cover
+  query UpcomingEventsQuery($id: Int!) {
+    user(id: $id) {
+      attending {
+        id
+        event {
+          id
+          thumbnail
+          name
+          slug
+        }
+      }
     }
   }
 `
@@ -33,6 +38,7 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ events }: CellSuccessProps<UpcomingEventsQuery>) => {
-  return <EventListCard heading="Upcoming Events" events={events} />
+export const Success = ({ user }: CellSuccessProps<UpcomingEventsQuery>) => {
+  const { attending } = user
+  return <EventListCard heading="Upcoming Events" events={attending} />
 }

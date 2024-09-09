@@ -114,8 +114,8 @@ model Post {
   event       Event        @relation(fields: [eventId], references: [id])
   eventId     Int
   content     String
-  plan        Plan         @relation(fields: [PlanId], references: [id]) // associated to Plans
-  PlanId      Int
+  plan        Plan?        @relation(fields: [PlanId], references: [id]) // associated to Plans
+  PlanId      Int?
   attachments Attachment[]
   comments    Comment[]
   bookmarks   Bookmark[]
@@ -149,10 +149,11 @@ model Attachment {
 model Event {
   id              Int              @id @default(autoincrement())
   name            String
+  slug            String           @unique
   startDate       DateTime
   endDate         DateTime?
-  organization    Organization     @relation(fields: [organizationId], references: [id])
-  organizationId  Int
+  organization    Organization?    @relation(fields: [organizationId], references: [id])
+  organizationId  Int?
   thumbnail       String?
   cover           String?
   recommendations Recommendation[]

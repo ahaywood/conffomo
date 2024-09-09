@@ -12,8 +12,8 @@ export const schema = gql`
   }
 
   type Query {
-    muteds: [Muted!]! @requireAuth
-    muted(id: Int!): Muted @requireAuth
+    muteds: [Muted!]! @skipAuth
+    muted(id: Int!): Muted @skipAuth
   }
 
   input CreateMutedInput {
@@ -29,8 +29,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createMuted(input: CreateMutedInput!): Muted! @requireAuth
-    updateMuted(id: Int!, input: UpdateMutedInput!): Muted! @requireAuth
-    deleteMuted(id: Int!): Muted! @requireAuth
+    createMuted(input: CreateMutedInput!): Muted! @skipAuth
+    updateMuted(id: Int!, input: UpdateMutedInput!): Muted! @skipAuth
+    deleteMuted(id: Int!): Muted! @skipAuth
   }
 `

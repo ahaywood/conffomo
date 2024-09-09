@@ -1,3 +1,5 @@
+import { Toaster } from '@redwoodjs/web/toast'
+
 import Nav from 'src/components/Nav/Nav'
 
 type InteriorLayoutProps = {
@@ -7,6 +9,7 @@ type InteriorLayoutProps = {
 const InteriorLayout = ({ children }: InteriorLayoutProps) => {
   return (
     <div className="grid grid-cols-[355px_1fr]">
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <aside className="px-10">
         <Nav />
       </aside>

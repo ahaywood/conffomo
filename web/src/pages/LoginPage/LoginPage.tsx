@@ -48,7 +48,7 @@ const LoginPage = () => {
     <>
       <Metadata title="Login" />
 
-      <div className="z-feature relative col-span-6 mb-5 mr-12 border-r-1 border-black">
+      <div className="relative z-feature col-span-6 mb-5 mr-12 border-r-1 border-black">
         <img src="/images/feature__login.png" alt="" />
       </div>
 

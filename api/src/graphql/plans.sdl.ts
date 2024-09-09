@@ -24,8 +24,8 @@ export const schema = gql`
   }
 
   type Query {
-    plans: [Plan!]! @requireAuth
-    plan(id: Int!): Plan @requireAuth
+    plans: [Plan!]! @skipAuth
+    plan(id: Int!): Plan @skipAuth
   }
 
   input CreatePlanInput {
@@ -63,8 +63,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createPlan(input: CreatePlanInput!): Plan! @requireAuth
-    updatePlan(id: Int!, input: UpdatePlanInput!): Plan! @requireAuth
-    deletePlan(id: Int!): Plan! @requireAuth
+    createPlan(input: CreatePlanInput!): Plan! @skipAuth
+    updatePlan(id: Int!, input: UpdatePlanInput!): Plan! @skipAuth
+    deletePlan(id: Int!): Plan! @skipAuth
   }
 `

@@ -20,7 +20,9 @@ const Routes = () => {
       <Route path="/contact" page={ContactPage} name="contact" />
       <Route path="/about" page={AboutPage} name="about" />
       {/* GUEST FEED - HOME PAGE WHEN THE USER IS NOT LOGGED IN */}
-      <Route path="/" page={GuestDashboardPage} name="guestDashboard" />
+      <Set wrap={InteriorLayout}>
+        <Route path="/" page={GuestDashboardPage} name="guestDashboard" />
+      </Set>
 
       {/* AUTH */}
       <Set wrap={AuthLayout}>

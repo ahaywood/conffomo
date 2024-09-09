@@ -10,8 +10,8 @@ export const schema = gql`
   }
 
   type Query {
-    organizations: [Organization!]! @requireAuth
-    organization(id: Int!): Organization @requireAuth
+    organizations: [Organization!]! @skipAuth
+    organization(id: Int!): Organization @skipAuth
   }
 
   input CreateOrganizationInput {
@@ -25,12 +25,11 @@ export const schema = gql`
   }
 
   type Mutation {
-    createOrganization(input: CreateOrganizationInput!): Organization!
-      @requireAuth
+    createOrganization(input: CreateOrganizationInput!): Organization! @skipAuth
     updateOrganization(
       id: Int!
       input: UpdateOrganizationInput!
-    ): Organization! @requireAuth
-    deleteOrganization(id: Int!): Organization! @requireAuth
+    ): Organization! @skipAuth
+    deleteOrganization(id: Int!): Organization! @skipAuth
   }
 `

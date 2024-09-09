@@ -6,13 +6,24 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import NavMyEvent from '../NavMyEvent/NavMyEvent'
+
 export const QUERY: TypedDocumentNode<
   NavMyEventsQuery,
   NavMyEventsQueryVariables
 > = gql`
-  query NavMyEventsQuery {
-    redwood {
-      version
+  query NavMyEventsQuery($id: Int!) {
+    user(id: $id) {
+      username
+      attending {
+        id
+        event {
+          id
+          thumbnail
+          name
+          slug
+        }
+      }
     }
   }
 `
@@ -25,13 +36,21 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({
-  navMyEvents,
-}: CellSuccessProps<NavMyEventsQuery>) => {
+export const Success = ({ user }: CellSuccessProps<NavMyEventsQuery>) => {
+  console.log(user)
   return (
-    <ul>
-      {navMyEvents.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
+    <ul className="my-2">
+      {user.attending.map((item, index) => {
+        return (
+          <li key={index}>
+            <NavMyEvent
+              id={item.id}
+              thumbnail={item.event.thumbnail}
+              name={item.event.name}
+              slug={item.event.slug}
+            />
+          </li>
+        )
       })}
     </ul>
   )

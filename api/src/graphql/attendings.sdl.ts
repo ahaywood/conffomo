@@ -11,8 +11,8 @@ export const schema = gql`
   }
 
   type Query {
-    attendings: [Attending!]! @requireAuth
-    attending(id: Int!): Attending @requireAuth
+    attendings: [Attending!]! @skipAuth
+    attending(id: Int!): Attending @skipAuth
   }
 
   input CreateAttendingInput {
@@ -28,9 +28,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createAttending(input: CreateAttendingInput!): Attending! @requireAuth
+    createAttending(input: CreateAttendingInput!): Attending! @skipAuth
     updateAttending(id: Int!, input: UpdateAttendingInput!): Attending!
-      @requireAuth
-    deleteAttending(id: Int!): Attending! @requireAuth
+      @skipAuth
+    deleteAttending(id: Int!): Attending! @skipAuth
   }
 `

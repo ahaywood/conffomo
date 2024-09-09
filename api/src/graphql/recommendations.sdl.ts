@@ -14,8 +14,8 @@ export const schema = gql`
   }
 
   type Query {
-    recommendations: [Recommendation!]! @requireAuth
-    recommendation(id: Int!): Recommendation @requireAuth
+    recommendations: [Recommendation!]! @skipAuth
+    recommendation(id: Int!): Recommendation @skipAuth
   }
 
   input CreateRecommendationInput {
@@ -40,11 +40,11 @@ export const schema = gql`
 
   type Mutation {
     createRecommendation(input: CreateRecommendationInput!): Recommendation!
-      @requireAuth
+      @skipAuth
     updateRecommendation(
       id: Int!
       input: UpdateRecommendationInput!
-    ): Recommendation! @requireAuth
-    deleteRecommendation(id: Int!): Recommendation! @requireAuth
+    ): Recommendation! @skipAuth
+    deleteRecommendation(id: Int!): Recommendation! @skipAuth
   }
 `

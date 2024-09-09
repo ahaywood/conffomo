@@ -12,8 +12,8 @@ export const schema = gql`
   }
 
   type Query {
-    blocks: [Block!]! @requireAuth
-    block(id: Int!): Block @requireAuth
+    blocks: [Block!]! @skipAuth
+    block(id: Int!): Block @skipAuth
   }
 
   input CreateBlockInput {
@@ -29,8 +29,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createBlock(input: CreateBlockInput!): Block! @requireAuth
-    updateBlock(id: Int!, input: UpdateBlockInput!): Block! @requireAuth
-    deleteBlock(id: Int!): Block! @requireAuth
+    createBlock(input: CreateBlockInput!): Block! @skipAuth
+    updateBlock(id: Int!, input: UpdateBlockInput!): Block! @skipAuth
+    deleteBlock(id: Int!): Block! @skipAuth
   }
 `

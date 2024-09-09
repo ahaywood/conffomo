@@ -3,11 +3,22 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { FileField, Form, Label, Submit, TextAreaField } from '@redwoodjs/forms'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 
 import Avatar from '../Avatar/Avatar'
 import Icon from '../Icon/Icon'
+
+// set up the GraphQL Mutation
+const CREATE_POST_MUTATION = gql`
+  mutation CreatePostMutation($input: CreatePostInput!) {
+    createPost(input: $input) {
+      id
+    }
+  }
+`
 
 interface PostFormProps {
   handleClose: () => void
@@ -18,6 +29,31 @@ const PostForm = ({ handleClose }: PostFormProps) => {
   const [isVideoShowing, setIsVideoShowing] = useState(false)
   const { currentUser } = useAuth()
 
+  const [createPost, { loading }] = useMutation(CREATE_POST_MUTATION, {
+    onCompleted: () => {
+      toast.success('Post created successfully')
+      handleClose()
+    },
+    onError: (error) => {
+      console.error(error)
+      toast.error(error.message)
+    },
+  })
+
+  const handleSubmit = (data) => {
+    console.log(data)
+    // TODO: Hard coded the event id
+    createPost({
+      variables: {
+        input: {
+          content: data.post,
+          eventId: 5,
+          userId: currentUser.id,
+        },
+      },
+    })
+  }
+
   return (
     <div className="relative w-[690px] rounded-xl bg-white shadow-md">
       <button className="absolute right-4 top-4" onClick={handleClose}>
@@ -26,8 +62,8 @@ const PostForm = ({ handleClose }: PostFormProps) => {
 
       {/* TODO: Parent Comment */}
 
-      <Form>
-        <fieldset>
+      <Form onSubmit={handleSubmit}>
+        <fieldset disabled={loading}>
           <div className="flex items-start gap-4 p-8">
             <Avatar
               alt={`${currentUser.firstName} ${currentUser.lastName}`}

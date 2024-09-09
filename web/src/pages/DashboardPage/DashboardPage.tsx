@@ -1,5 +1,6 @@
 import { Metadata } from '@redwoodjs/web'
 
+import DashboardCell from 'src/components/DashboardCell'
 import TabbedNav from 'src/components/TabbedNav/TabbedNav'
 import UpcomingEventsCell from 'src/components/UpcomingEventsCell'
 
@@ -11,7 +12,8 @@ const DashboardPage = () => {
       {/* main feed */}
       <div className="interior-grid">
         <div>
-          <TabbedNav
+          {/* TODO: Add Tabbed Nav back in */}
+          {/* <TabbedNav
             tabs={[
               {
                 label: 'Events I Attended',
@@ -23,11 +25,12 @@ const DashboardPage = () => {
               },
             ]}
             activeTab="#attended"
-          />
+          /> */}
+          <DashboardCell />
         </div>
 
-        <aside className="border-l-1 border-black pl-4">
-          <UpcomingEventsCell />
+        <aside className="mr-10 border-l-1 border-black pl-4">
+          <UpcomingEventsCell id={1} />
         </aside>
       </div>
     </>
