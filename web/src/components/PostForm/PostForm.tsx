@@ -9,7 +9,10 @@ import { toast } from '@redwoodjs/web/toast'
 import { useAuth } from 'src/auth'
 
 import Avatar from '../Avatar/Avatar'
+import { QUERY as DASHBOARD_QUERY } from '../DashboardCell/DashboardCell'
 import Icon from '../Icon/Icon'
+import { QUERY as EVENT_QUERY } from '../IndividualEventCell/IndividualEventCell'
+import { QUERY as PROFILE_QUERY } from '../ProfileCell/ProfileCell'
 
 // set up the GraphQL Mutation
 const CREATE_POST_MUTATION = gql`
@@ -51,6 +54,7 @@ const PostForm = ({ handleClose }: PostFormProps) => {
           userId: currentUser.id,
         },
       },
+      refetchQueries: [DASHBOARD_QUERY, EVENT_QUERY, PROFILE_QUERY],
     })
   }
 
