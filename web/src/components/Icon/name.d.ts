@@ -15,6 +15,7 @@ export type IconName =
 	| "follow"
 	| "hide"
 	| "image"
+	| "leftArrow"
 	| "like"
 	| "likeFilled"
 	| "link"

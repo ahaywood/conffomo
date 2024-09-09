@@ -84,17 +84,17 @@ const PostCard = ({
             <span>@{user.username}</span> •{' '}
             <span>{prettifyDate(createdAt)}</span>{' '}
           </Link>
-          <div ref={menuRef}>
-            <button
+          <div ref={menuRef} className="z-popup relative">
+            {/* <button
               className={`relative rounded-full p-1 ${isMenuOpen ? 'bg-veryLightBlue text-white' : ''}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Icon id="threeDots" />
-            </button>
+            </button> */}
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.div
-                  className="absolute -right-[2px] top-16"
+                  className="absolute -right-[16px] top-12"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -166,7 +166,7 @@ const PostCard = ({
         </div>
 
         {/* action buttons */}
-        <div className="action-buttons justify-between">
+        {/* <div className="action-buttons justify-between">
           <button className="flex items-center gap-1">
             <Icon id="speech" />
             {commentCount}
@@ -215,7 +215,7 @@ const PostCard = ({
               )}
             </AnimatePresence>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

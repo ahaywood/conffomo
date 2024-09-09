@@ -135,13 +135,6 @@ const Nav = () => {
       <AnimatePresence>
         {isPostFormShowing && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <Overlay />
-            </motion.div>
             <ModalWrapper>
               <motion.div
                 initial={{ opacity: 0, y: -20 }}

@@ -58,7 +58,7 @@ const MyAccountBar = ({
                 stiffness: 260,
                 damping: 20,
               }}
-              className="absolute right-[-15px] top-[-220px]"
+              className="absolute bottom-12 right-[-15px]"
             >
               <PopupMenu
                 position="topRight"
@@ -66,12 +66,12 @@ const MyAccountBar = ({
                   {
                     icon: 'account',
                     label: 'My Account',
-                    href: '#',
+                    href: routes.editAccount(),
                   },
                   {
                     icon: 'profile',
                     label: 'Edit My Profile',
-                    href: '#',
+                    href: routes.editProfile(),
                   },
                   // {
                   //   icon: 'qrCode',
@@ -93,13 +93,13 @@ const MyAccountBar = ({
             </motion.div>
           )}
         </AnimatePresence>
-        {/* <button
+        <button
           className={`icon-button hover:bg-casper hover:text-white
           ${isMenuOpen ? 'bg-casper text-white' : 'text-black'}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <Icon id="threeDots" />
-        </button> */}
+        </button>
       </div>
     </div>
   )

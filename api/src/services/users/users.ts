@@ -13,6 +13,14 @@ export const user: QueryResolvers['user'] = ({ id }) => {
   })
 }
 
+export const userByUsername: QueryResolvers['userByUsername'] = ({
+  username,
+}) => {
+  return db.user.findUnique({
+    where: { username },
+  })
+}
+
 export const updateUser: MutationResolvers['updateUser'] = async ({
   id,
   input,
@@ -21,12 +29,18 @@ export const updateUser: MutationResolvers['updateUser'] = async ({
   // if there's an avatar, upload it to S3 and get the URL
   const avatarUrl = input.avatar
     ? await uploadToS3(input.avatar, `avatar-${id}`)
-    : null
+    : undefined
+
+  // if there's a cover, upload it to S3 and get the URL
+  const coverUrl = input.cover
+    ? await uploadToS3(input.cover, `cover-${id}`)
+    : undefined
 
   return db.user.update({
     data: {
       ...input,
       avatar: avatarUrl,
+      cover: coverUrl,
     },
     where: { id },
   })

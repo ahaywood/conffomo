@@ -10,12 +10,12 @@ interface UserMetaDataProps {
   user: {
     id: number
     username: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     avatar: string
     location: string
     bio: string
-    link: string
+    website: string
     following: {}
     followingCount: number
     followers: {}
@@ -45,35 +45,41 @@ const UserMetaData = ({ user, isFollowing = false }: UserMetaDataProps) => {
           />
         )}
       </div>
-      <h2 className="font-serif text-[94px] font-bold leading-none text-gabbleGreen">
-        {user.first_name}
+      <h2 className="z-0 font-serif text-[94px] font-bold leading-none text-gabbleGreen">
+        {user.firstName}
         <br />
-        {user.last_name}
+        {user.lastName}
       </h2>
       <p className="mb-8">@{user.username}</p>
       <p className="mb-8 leading-normal">{user.bio}</p>
       <div className="mb-8 grid grid-cols-2 gap-x-5 gap-y-3">
         <div className="meta-data-item">
-          <Icon id="location" /> {user.location}
+          {user.location && (
+            <>
+              <Icon id="location" /> {user.location}
+            </>
+          )}
         </div>
-        <a
-          href={user.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="meta-data-item font-bold underline hover:text-veryLightBlue"
-        >
-          <Icon id="link" /> {user.link}
-        </a>
+        {user.website ? (
+          <a
+            href={user.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="meta-data-item font-bold underline hover:text-veryLightBlue"
+          >
+            <Icon id="link" /> {user.website}
+          </a>
+        ) : null}
         {/* TODO: Make the Following and Follower count links */}
-        <div className="meta-data-item">
+        {/* <div className="meta-data-item">
           <Icon id="profile" /> <strong>{user.followingCount}</strong> Following
-        </div>
-        <div className="meta-data-item">
+        </div> */}
+        {/* <div className="meta-data-item">
           <Icon id="profile" /> <strong>{user.followersCount}</strong> Followers
-        </div>
+        </div> */}
       </div>
-      <AvatarStack stack={[]} size={32} /> Followed by James Q Quick and
-      {user.followersCount - 1} others
+      {/* <AvatarStack stack={[]} size={32} /> Followed by James Q Quick and
+      {user.followersCount - 1} others */}
     </div>
   )
 }

@@ -58,7 +58,7 @@ const LoginPage = () => {
         <Form onSubmit={onSubmit} className="auth-form">
           <div className="field">
             <Label name="username" className="" errorClassName="error">
-              Username
+              Email
             </Label>
             <TextField
               name="username"

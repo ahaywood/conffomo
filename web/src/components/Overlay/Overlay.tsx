@@ -10,7 +10,7 @@ const Overlay = () => {
   }, [])
 
   return (
-    <div className="fixed inset-0 h-screen w-screen bg-black bg-opacity-80" />
+    <div className="z-overlay fixed inset-0 h-screen w-screen bg-black bg-opacity-80" />
   )
 }
 

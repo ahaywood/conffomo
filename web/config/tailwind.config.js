@@ -29,6 +29,9 @@ module.exports = {
         page: '68px',
       },
       zIndex: {
+        modal: 9999,
+        overlay: 9998,
+        popup: 100,
         content: 53,
         feature: 52,
         logo: 51,

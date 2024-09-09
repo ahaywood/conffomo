@@ -9,6 +9,8 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import PostCard from '../PostCard/PostCard'
+
 export const QUERY: TypedDocumentNode<
   FindDashboardQuery,
   FindDashboardQueryVariables
@@ -21,6 +23,7 @@ export const QUERY: TypedDocumentNode<
         firstName
         lastName
         avatar
+        username
       }
       content
       createdAt
@@ -41,5 +44,24 @@ export const Failure = ({
 export const Success = ({
   posts,
 }: CellSuccessProps<FindDashboardQuery, FindDashboardQueryVariables>) => {
-  return <div>{JSON.stringify(posts)}</div>
+  console.log({ posts })
+  return (
+    <ul>
+      {posts.map((post, index) => (
+        <li key={index} className="border-b-3 border-b-[#d8d3d2] py-8">
+          <PostCard
+            user={post.user}
+            createdAt={post.createdAt}
+            content={post.content}
+            likesCount={0}
+            isLiked={false}
+            commentCount={0}
+            bookmarksCount={0}
+            isBookmarked={false}
+            attachments={[]}
+          />
+        </li>
+      ))}
+    </ul>
+  )
 }

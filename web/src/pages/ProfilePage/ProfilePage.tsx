@@ -1,15 +1,14 @@
 import { Metadata } from '@redwoodjs/web'
 
+import ProfileCell from 'src/components/ProfileCell/ProfileCell'
+
 const ProfilePage = ({ username }: { username: string }) => {
   console.log({ username })
   return (
     <>
       <Metadata title="Profile" description="Profile page" />
 
-      <h1>ProfilePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/ProfilePage/ProfilePage.tsx</code>
-      </p>
+      <ProfileCell username={username} />
     </>
   )
 }

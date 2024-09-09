@@ -36,6 +36,7 @@ export const schema = gql`
   type Query {
     users: [User!]! @skipAuth
     user(id: Int!): User @skipAuth
+    userByUsername(username: String!): User @skipAuth
   }
 
   input UpdateUserInput {

@@ -108,7 +108,10 @@ const PostForm = ({ handleClose }: PostFormProps) => {
                 className={`icon-button border-2 border-black hover:border-veryLightBlue
                   ${isImageShowing ? 'hover border-veryLightBlue bg-veryLightBlue text-white hover:bg-veryLightBlue-darker hover:text-white' : ''}
                 `}
-                onClick={() => setIsImageShowing(!isImageShowing)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsImageShowing(!isImageShowing)
+                }}
               >
                 <Icon id="image" />
               </button>
@@ -116,7 +119,10 @@ const PostForm = ({ handleClose }: PostFormProps) => {
                 className={`icon-button border-2 border-black hover:border-veryLightBlue
                   ${isVideoShowing ? 'hover border-veryLightBlue bg-veryLightBlue text-white hover:bg-veryLightBlue-darker hover:text-white' : ''}
                 `}
-                onClick={() => setIsVideoShowing(!isVideoShowing)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsVideoShowing(!isVideoShowing)
+                }}
               >
                 <Icon id="video" />
               </button>
