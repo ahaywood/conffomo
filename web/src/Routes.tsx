@@ -11,6 +11,7 @@ import { Router, Route, Set, PrivateSet } from '@redwoodjs/router'
 
 import { useAuth } from './auth'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
+import InteriorLayout from './layouts/InteriorLayout/InteriorLayout'
 import LegalLayout from './layouts/LegalLayout/LegalLayout'
 
 const Routes = () => {
@@ -64,7 +65,9 @@ const Routes = () => {
         <Route path="/my-events" page={MyEventsPage} name="myEvents" />
         <Route path="/notifications" page={NotificationsPage} name="notifications" />
 
-        <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+        <Set wrap={InteriorLayout}>
+          <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+        </Set>
       </PrivateSet>
 
       <Route notfound page={NotFoundPage} />

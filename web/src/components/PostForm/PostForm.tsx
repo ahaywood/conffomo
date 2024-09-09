@@ -19,13 +19,12 @@ const PostForm = ({ handleClose }: PostFormProps) => {
   const { currentUser } = useAuth()
 
   return (
-    <div className="relative rounded-xl bg-white shadow-md">
+    <div className="relative w-[690px] rounded-xl bg-white shadow-md">
       <button className="absolute right-4 top-4" onClick={handleClose}>
         <Icon id="close" />
       </button>
 
-      {/* Parent Comment */}
-      <div className="p-8"></div>
+      {/* TODO: Parent Comment */}
 
       <Form>
         <fieldset>
@@ -37,7 +36,7 @@ const PostForm = ({ handleClose }: PostFormProps) => {
             />
             <TextAreaField
               name="post"
-              className="placeholder:text-battleshipGray min-h-[225px] w-full py-4 text-xl outline-none placeholder:font-bold"
+              className="min-h-[225px] w-full py-4 text-xl outline-none placeholder:font-bold placeholder:text-battleshipGray"
               placeholder="What do you think?"
             />
           </div>
