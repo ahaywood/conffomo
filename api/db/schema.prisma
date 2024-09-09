@@ -17,11 +17,11 @@ generator client {
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 // to create migrations for them and apply to your dev DB.
 model User {
-  id                  Int       @id @default(autoincrement())
+  id                  Int             @id @default(autoincrement())
   firstName           String
   lastName            String
-  email               String    @unique
-  username            String    @unique
+  email               String          @unique
+  username            String          @unique
   hashedPassword      String
   salt                String
   resetToken          String?
@@ -31,100 +31,146 @@ model User {
   bio                 String?
   location            String?
   website             String?
-  public              Boolean   @default(true)
-  directMessages      Boolean   @default(true) // can receive direct messages
-  onboarded           Boolean   @default(false) // whether this user has onboarded
-  reported            Boolean   @default(false) // whether someone has reported this account?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
+  public              Boolean         @default(true)
+  directMessages      Boolean         @default(true) // can receive direct messages
+  onboarded           Boolean         @default(false) // whether this user has onboarded
+  reported            Boolean         @default(false) // whether someone has reported this account?
+  likes               Like[]
+  comments            Comment[]
+  bookmarks           Bookmark[]
+  posts               Post[]
+  plans               Plan[]
+  messagesTo          Message[]       @relation("to_user")
+  messagesFrom        Message[]       @relation("from_user")
+  attendingPlans      AttendingPlan[]
+  mutedBy             Muted[]         @relation("muted_by") // this is the user doing the muting, should be this user
+  mutedUser           Muted[]         @relation("muted_user")
+  attachments         Attachment[]
+  attending           Attending[]
+  organization        Organization[]
+  blockedByUser       Block[]         @relation("blocked_by_user")
+  blockedUser         Block[]         @relation("blocked_user")
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
 }
 
 model Bookmark {
   id        Int      @id @default(autoincrement())
-  // postId    Int      @id @default(autoincrement())
-  // users
-  // userId    Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Like {
   id        Int      @id @default(autoincrement())
-  // userId
-  // postId
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  Post      Post?    @relation(fields: [postId], references: [id])
+  postId    Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Block {
-  id        Int      @id @default(autoincrement())
-  // userId
-  // blockedUser // if the user has blocked a user
-  // blockedEvent // if the user has blocked an event
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  blockedByUser   User     @relation(fields: [blockedByUserId], references: [id], name: "blocked_by_user") // user doing the blocking
+  blockedByUserId Int
+  blockedUser     User     @relation(fields: [blockedUserId], references: [id], name: "blocked_user") // user doing the blocking
+  blockedUserId   Int
+  blockedEvent    Event    @relation(fields: [eventId], references: [id])
+  eventId         Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Organization {
   id        Int      @id @default(autoincrement())
   name      String
-  // ownerId
+  events    Event[]
+  user      User     @relation(fields: [userId], references: [id]) // owner
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Attending {
   id        Int      @id @default(autoincrement())
-  // userId
-  // eventId
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   Int
   speaking  Boolean  @default(false) // true if the user is speaking at this event
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  // userId // author
-  // eventId
-  content   String
-  // planId // associated to Plans
-  reported  Boolean  @default(false) // if the post has been reported
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int          @id @default(autoincrement())
+  user        User         @relation(fields: [userId], references: [id]) // author
+  userId      Int
+  event       Event        @relation(fields: [eventId], references: [id])
+  eventId     Int
+  content     String
+  plan        Plan         @relation(fields: [PlanId], references: [id]) // associated to Plans
+  PlanId      Int
+  attachments Attachment[]
+  comments    Comment[]
+  bookmarks   Bookmark[]
+  likes       Like[]
+  reported    Boolean      @default(false) // if the post has been reported
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
-model Media {
+model Attachment {
   id        Int      @id @default(autoincrement())
-  // user
-  // post
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
   alt       String?
   caption   String?
+  // threads   Thread[]
   // comment
+  // thread    Thread   @relation(fields: [threadId], references: [id])
+  // threadId  Int
   // type // enum - photo / video
-  // message // direct message
+  message   Message  @relation(fields: [messageId], references: [id])
+  messageId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Event {
-  id          Int       @id @default(autoincrement())
-  name        String
-  startDate   DateTime
-  endDate     DateTime?
-  // organizationId
-  description String?
-  location    String?
-  website     String?
-  public      Boolean   @default(true)
-  reported    Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id              Int              @id @default(autoincrement())
+  name            String
+  startDate       DateTime
+  endDate         DateTime?
+  organization    Organization     @relation(fields: [organizationId], references: [id])
+  organizationId  Int
+  recommendations Recommendation[]
+  description     String?
+  location        String?
+  website         String?
+  public          Boolean          @default(true)
+  reported        Boolean          @default(false)
+  posts           Post[]
+  plans           Plan[]
+  muted           Muted[]
+  attending       Attending[]
+  blocks          Block[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
 }
 
 model Recommendation {
   id        Int      @id @default(autoincrement())
   title     String
-  // eventID
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   Int
   street1   String?
   street2   String?
   city      String?
@@ -134,69 +180,87 @@ model Recommendation {
   updatedAt DateTime @updatedAt
 }
 
-model CommentThread {
+model Thread {
   id        Int      @id @default(autoincrement())
-  // comment
+  // comments  Comment[]
+  // attachments Attachment[]
+  // attachments  Attachment @relation(fields: [attachmentId], references: [id])
+  // attachmentId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  // userId // author
-  // postId Int
+  user      User     @relation(fields: [userId], references: [id]) // author
+  userId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
   comment   String
-  // commentThreadId
+  // thread    Thread   @relation(fields: [threadId], references: [id])
+  // threadId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Muted {
-  id        Int      @id @default(autoincrement())
-  // userId
-  // mutedAccount
-  // mutedEvent
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  mutedBy     User     @relation(fields: [mutedById], references: [id], name: "muted_by") // this is the user doing the muting
+  mutedById   Int
+  mutedUser   User     @relation(fields: [mutedUserId], references: [id], name: "muted_user")
+  mutedUserId Int
+  mutedEvent  Event    @relation(fields: [eventId], references: [id])
+  eventId     Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Plan {
-  id        Int       @id @default(autoincrement())
-  title     String
-  startDate DateTime  @default(now())
-  endDate   DateTime?
-  thumbnail String?
-  reported  Boolean   @default(false)
-  street1   String?
-  street2   String?
-  city      String?
-  state     String?
-  zip       String?
-  public    Boolean   @default(false)
-  limit     Int? // limit the number of people that can attend
-  // eventId
-  // userId // author / owner of the plans
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id             Int             @id @default(autoincrement())
+  title          String
+  startDate      DateTime        @default(now())
+  endDate        DateTime?
+  thumbnail      String?
+  reported       Boolean         @default(false)
+  street1        String?
+  street2        String?
+  city           String?
+  state          String?
+  zip            String?
+  public         Boolean         @default(false)
+  limit          Int? // limit the number of people that can attend
+  event          Event           @relation(fields: [eventId], references: [id])
+  eventId        Int
+  user           User            @relation(fields: [userId], references: [id]) // author / owner of the plans
+  userId         Int
+  attendingPlans AttendingPlan[] // list of users planning on attending
+  posts          Post[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 }
 
 model AttendingPlan {
   id        Int      @id @default(autoincrement())
-  // userId Int
-  // planId
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  plan      Plan     @relation(fields: [planId], references: [id])
+  planId    Int
   // status // enum - interested / going
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Message {
-  id        Int      @id @default(autoincrement())
-  // toUser
-  // fromUser
-  message   String
-  edited    Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int          @id @default(autoincrement())
+  toUser      User         @relation(fields: [toUserId], references: [id], name: "to_user")
+  toUserId    Int
+  fromUser    User         @relation(fields: [fromUserId], references: [id], name: "from_user")
+  fromUserId  Int
+  message     String
+  edited      Boolean      @default(false)
+  attachments Attachment[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 model Notification {
